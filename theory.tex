@@ -76,9 +76,13 @@
 
   The viscous term is much smaller than the nonlinear term for large $l$ (due to the factor of $1/l^2$). This means that at large scales energy can't dissipate as heat, so the nonlinear term effectively cascades energy through eddies as it has nowhere else to go. Only when the two terms are comparable (Re $\sim 1$) can the energy be dissipated as heat. This also explains the self-similarity in the energy spectrum across the inertial subrange.
 
-  For a given length scale $l$ and velocity $u_l$ (this is the \textbf{structure factor}), the energy is $E\sim u^2_l$. The turn-over time for an eddy is $\tau\sim l/u_l$. The rate of energy dissipation is then $E/\tau \sim u^3_l/l=\text{const.}$ across the inertial subrange due to self-similarity.
+  For a given length scale $l$ and velocity $u_l$ (this is the \textbf{structure function}), the energy is $E\sim u^2_l$. The turn-over time for an eddy is $\tau\sim l/u_l$. The rate of energy dissipation is then $E/\tau \sim u^3_l/l=\text{const.}$ across the inertial subrange due to self-similarity.
 
-  We then have $u_l\sim l^{1/3}\sim k^{-1/3}$. We can then write $E(k)\sim u^2_l \sim k^{-2/3} \sim^? k^{-5/3}$, giving us Kolmogorov's result.
+  We then have $u_l\sim l^{1/3}\sim k^{-1/3} \equiv u_k$. The energy in all eddies with wavenumber $\geq k$  is given by
+  $$
+  E = u^2_k \sim k^{-2/3} \sim \int_k^\infty E(\kappa) \ d\kappa  \implies E(k) \sim k^{-5/3}
+  $$
+  giving us Kolmogorov's result.
 
-  The structure factor $\langle[u_l]^2 \rangle = \langle [u(x+l)-u(x)]^2\rangle$ measures how smooth the velocity distribution is for a given length scale. It is small at large $l$ as velocity is continous at that scale, and large at small $l$ as velocity can change appreciatively over that scale.
+  The structure function $\langle[u_l]^2 \rangle = \langle [u(x+l)-u(x)]^2\rangle$ measures how smooth the velocity distribution is for a given length scale. It is small at large $l$ as velocity is continous at that scale, and large at small $l$ as velocity can change appreciatively over that scale.
 \end{document}
