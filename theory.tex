@@ -43,7 +43,6 @@
 \rhead{\course}
 \lfoot{}
 \cfoot{}
-\rfoot{\small\thepage}
 \headsep 1.5em
 
 \fancypagestyle{firststyle}
@@ -59,8 +58,7 @@
 }
 
 \begin{document}
-  % First Page Style
-  \thispagestyle{firststyle}
+  \section*{Theory}
   \textbf{Kolmogorov energy cascade law: } Energy that is put into a turbulent fluid at the largest relevant scale doesn't immediately dissipate as heat. Instead it is cascaded down the length scales of the fluid (from macro to micro) in the formation of increasingly smaller eddies, and is dissipated as heat at the microscopic scale due to viscous effects. This produces a kind of order out of the (seemingly) chaos of turbulence.
 
   For a given eddy length scale $l$, we can find a relation between the wavenumber ($k=2\pi/l$) and the energy contained in the fluid $E(k)$. This theory was developed by Kolmogorov and says $E(k)\sim k^{-5/3}$ for a given range of wavenumbers, called the \textbf{inertial subrange}. This law fails at small scales (large $k$) for the reason explained above, and at large scales (small $k$) as this is where the energy is being injected into the system.
