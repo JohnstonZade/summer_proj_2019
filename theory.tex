@@ -1,0 +1,86 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{fullpage}
+\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{lastpage}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[nodayofweek, level]{datetime}
+\usepackage{bbm}
+\usepackage{cases}
+
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+
+%% ----- COMMANDS -----
+% Headings
+\newcommand\course{Summer Project} % Edit for course name
+\newcommand{\theorem}[1]{\underline{\textbf{#1}} \\}
+
+% Notation
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\modulo}[1]{\text{ mod }#1}
+\newcommand{\kernel}[1]{\text{ker }#1}
+\newcommand{\LeftImplies}{\underline{$\Leftarrow$:} }
+\newcommand{\RightImplies}{\underline{$\Rightarrow$:} }
+\newcommand{\cycle}[1]{\langle #1 \rangle}
+\newcommand{\B}[1]{\mathbf{#1}}
+
+\pagestyle{fancyplain}
+\headheight 35pt
+\rhead{\course}
+\lfoot{}
+\cfoot{}
+\rfoot{\small\thepage}
+\headsep 1.5em
+
+\fancypagestyle{firststyle}
+{
+  \fancyhf{}
+  \headheight 35pt
+  \chead{\textbf{\Large Theory}} % Edit for title
+  \rhead{\course \\ Zade Johnston}
+  \lfoot{}
+  \cfoot{}
+  \rfoot{\small\thepage}
+  \headsep 1.5em
+}
+
+\begin{document}
+  % First Page Style
+  \thispagestyle{firststyle}
+  \textbf{Kolmogorov energy cascade law: } Energy that is put into a turbulent fluid at the largest relevant scale doesn't immediately dissipate as heat. Instead it is cascaded down the length scales of the fluid (from macro to micro) in the formation of increasingly smaller eddies, and is dissipated as heat at the microscopic scale due to viscous effects. This produces a kind of order out of the (seemingly) chaos of turbulence.
+
+  For a given eddy length scale $l$, we can find a relation between the wavenumber ($k=2\pi/l$) and the energy contained in the fluid $E(k)$. This theory was developed by Kolmogorov and says $E(k)\sim k^{-5/3}$ for a given range of wavenumbers, called the \textbf{inertial subrange}. This law fails at small scales (large $k$) for the reason explained above, and at large scales (small $k$) as this is where the energy is being injected into the system.
+
+  \textbf{Derivation using dimensional analysis:} The Navier-Stokes equation is
+  $$
+    \frac{\partial \B{u}}{\partial t} + (\B{u}\cdot\nabla)\B{u} = -\nabla p + \nu \nabla^2\B{u}
+  $$
+  Turbulence arises from the nonlinear term $(\B{u}\cdot\nabla)\B{u}$ (represents the energy cascade), and energy is dissipated via the viscosity term $\nu \nabla^2\B{u}$. Using dimensional analysis, at a given scale $l$ with bulk velocity $u_l$ we have $|(\B{u}\cdot \nabla)\B{u}|\sim u^2_l/l$ and $|\nu \nabla^2 \B{u}|\sim \nu u_l / l^2$ (using $\nabla \sim 1/l$).
+
+  Reynolds number Re is the ratio of the turbulence term to the viscosity term:
+  $$
+    \text{Re} \sim \frac{|(\B{u}\cdot \nabla)\B{u}|}{|\nu \nabla^2 \B{u}|} = \frac{u_l l}{\nu}
+  $$
+
+  The viscous term is much smaller than the nonlinear term for large $l$ (due to the factor of $1/l^2$). This means that at large scales energy can't dissipate as heat, so the nonlinear term effectively cascades energy through eddies as it has nowhere else to go. Only when the two terms are comparable (Re $\sim 1$) can the energy be dissipated as heat. This also explains the self-similarity in the energy spectrum across the inertial subrange.
+
+  For a given length scale $l$ and velocity $u_l$ (this is the \textbf{structure factor}), the energy is $E\sim u^2_l$. The turn-over time for an eddy is $\tau\sim l/u_l$. The rate of energy dissipation is then $E/\tau \sim u^3_l/l=\text{const.}$ across the inertial subrange due to self-similarity.
+
+  We then have $u_l\sim l^{1/3}\sim k^{-1/3}$. We can then write $E(k)\sim u^2_l \sim k^{-2/3} \sim^? k^{-5/3}$, giving us Kolmogorov's result.
+
+  The structure factor $\langle[u_l]^2 \rangle = \langle [u(x+l)-u(x)]^2\rangle$ measures how smooth the velocity distribution is for a given length scale. It is small at large $l$ as velocity is continous at that scale, and large at small $l$ as velocity can change appreciatively over that scale.
+\end{document}

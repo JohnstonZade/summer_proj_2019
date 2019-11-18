@@ -84,7 +84,7 @@
 
   Started this week learning about how to use MPI in Athena++. Followed the \href{https://github.com/PrincetonUniversity/athena-public-version/wiki/Running-3D-MHD-with-OpenMP-and-MPI}{3D blast wave tutorial} and managed to get it working on Thunderbird with HDF5. Jono also recommended learning a text editor, so I spent an hour learning the basics of Vim. \textbf{Note:} HDF5 is better to use than .vtk with parallel computing as it allows all the processors being used to write the data in one file compared to a file for each processor that need to be joined (less hassle).
 
-  Jono then gave me an Athena++ hydrodynamic turbulence input script to play around with, and some MATLAB scripts that analyse the energy spectrum of the fluid in question (\hyperlink{Kolmogorov}{see below}). At the moment, we model the fluid in a cube. There are two different modes that we're wanting to focus on: decaying turbulence (disturb the fluid initially then leave it to its own devices) and continuously driven turbulence. Ran the Athena++ code with 3 different grid sizes for both modes; see screenshots below.
+  Jono then gave me an Athena++ hydrodynamic turbulence input script to play around with, and some MATLAB scripts that analyse the energy spectrum of the fluid in question. At the moment, we model the fluid in a cube. There are two different modes that we're wanting to focus on: decaying turbulence (disturb the fluid initially then leave it to its own devices) and continuously driven turbulence. Ran the Athena++ code with 3 different grid sizes for both modes; see screenshots below.
 
   \begin{figure}[!h]
    \centering
@@ -108,13 +108,10 @@
   \label{fig:forcedturb}
   \end{figure}
 
-  These were just the simulations with none of the parameters changed in the input script. Using the MATLAB scripts I also obtained the energy spectrum of the fluid; was very rough due to the low resolution. Wanted to try start a $256^3$ grid size simulation before I left on Wednesday but Thunderbird couldn't find the HDF5 files; will try again later. Thursday and Friday of this week were spent at the \href{https://otagocarpentries.github.io/2019-11-14-otago/}{Otago Software Carpentry Workshop}.
+  These were just the simulations with none of the parameters changed in the input script. Using the MATLAB scripts I also obtained the energy spectrum of the fluid; was very rough due to the low resolution. Wanted to try start a $256^3$ grid size simulation before I left on Wednesday but didn't have enough time to set up; will try again later. Thursday and Friday of this week were spent at the \href{https://otagocarpentries.github.io/2019-11-14-otago/}{Otago Software Carpentry Workshop}.
 
-  \textbf{Next Week:} Play around with parameters. Want to run the larger grid size simulations to obtain a better energy spectrum that fits the $k^{-5/3}$ law. Plot the total energy over time for both modes; should observe fluctuations in the energy for forced turbulence. Derive cascade law from first principles, starting with $E\propto u^2$ and $\tau \propto l/u$.
+  \textbf{Next Week:} Play around with parameters. Want to run the larger grid size simulations to obtain a better energy spectrum that fits the $k^{-5/3}$ law, will add screenshots of spectrum then. Plot the total energy over time for both modes; should observe fluctuations in the energy for forced turbulence.
 
-  \hypertarget{Kolmogorov}{\textbf{Kolmogorov energy cascade law:}} Energy that is put into a turbulent fluid at the largest relevant scale doesn't immediately dissipate as heat. Instead it is cascaded down the length scales of the fluid (from macro to micro) in the formation of increasingly smaller eddies, and is dissipated as heat at the microscopic scale due to viscous effects. This produces a kind of order out of the (seemingly) chaos of turbulence.
-
-  For a given length scale $l$, we can find a relation between the wavenumber ($k=2\pi/l$) and the energy contained in the fluid $E(k)$. This theory was developed by Kolmogorov and says $E(k)\propto k^{-5/3}$ for a given range of wavenumbers, called the \textbf{inertial subrange}. This law fails at small scales (large $k$) for the reason explained above, and at large scales (small $k$) as this is where the energy is being injected into the system.
 
   \section*{Week 2: 18 Nov - 22 Nov}
 
