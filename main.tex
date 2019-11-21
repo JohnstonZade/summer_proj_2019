@@ -112,7 +112,60 @@
 
 
   \section*{Week 2: 18 Nov - 22 Nov}
+  This week I ran bigger simulations for both decay and forced turbulence from last week in order to be able to plot the energy spectrum and time evolution. The grid size ranged from 32 to 256, and runs over 30 seconds. All simulations left the parameters in \verb|athinput.turb| unchanged.
 
+  Calculated the turnover time $\tau \sim L/u_l$ of eddies on the scale of the box to get an idea of the timescales involved in the energy cascade. This is important in the decaying case as all the input energy dissipates within a few turnover times, so this allowed me to get an approximate time range to average the energy spectrum over. For these simulations, I used $L=1$ and $u_L = \sqrt{u^2_x+u^2_y+u^2_z}$ taken at the start of the simulation from the \verb|Turb.hst| file.
+
+  \textbf{Continuous Forcing:} For the continously forced case, the 256 grid size gave the best result. This is expected as it is able to simulate smaller scale eddies compared to lower resolution simulations, allowing more of the energy cascade to be observed. We see that the energy spectrum does follow the $k^{-5/3}$ law (shown in Fig. \ref{fig:256contspec}) for a given range of wavevectors.
+
+  The energy evolution (Fig. \ref{fig:256conteng}) shows an increase in kinetic energy until it levels out after a few turnover times. This leveling out is due to the energy dissipation rate matching the energy input rate from the forcing. There is still some variation around the mean value, which arises from fluctuations due to turbulence.
+
+  \begin{figure}[!h]
+   \centering
+  \begin{subfigure}{0.3\textwidth}
+  \includegraphics[width=0.9\linewidth, height=0.9\linewidth]{Wk2/cont_turb_256_default.png}
+  \caption{Averaged Spectrum}
+  \label{fig:256contspec}
+  \end{subfigure}
+  \begin{subfigure}{0.3\textwidth}
+  \includegraphics[width=0.9\linewidth, height=0.9\linewidth]{Wk2/cont_turb_256_default_energy.png}
+  \caption{Energy Evolution}
+  \label{fig:256conteng}
+  \end{subfigure}
+
+  \caption{Plots showing the energy spectrum and time evolution of the 256 grid size continuous forcing simulation}
+  \label{fig:256contenergy}
+  \end{figure}
+
+  \textbf{Decay:} The energy spectrum (Fig \ref{fig:128decayspec}), averaged over the first two turnover cycles, is not as well defined as the continuous case. I think this is because the energy depends on time instead of being approximately constant. The energy evolution (Fig. \ref{fig:128decayeng}) shows that the total kinetic energy decreases over time due to dissipation from viscosity.
+
+  For the spectrum evolution (Figure \ref{fig:128decayevo}) I took snapshots of the spectrum at 3 second intervals, with a snapshot at 0.1 seconds to observe the energy input (the curve sharply peaked at $k \sim 10$). We see that the energy cascades down through the length scales directly after input (at 3 seconds), and then decreases as it is dissipated as heat at the micro scale (shown by the ``sinking" of the spectrum). This is expected as we saw that the total energy in Fig. \ref{fig:128decayeng} is decreasing.
+
+  \begin{figure}[!h]
+   \centering
+  \begin{subfigure}{0.3\textwidth}
+  \includegraphics[width=0.9\linewidth, height=0.9\linewidth]{Wk2/decay_turb_128_default.png}
+  \caption{Averaged Spectrum}
+  \label{fig:128decayspec}
+  \end{subfigure}
+  \begin{subfigure}{0.3\textwidth}
+  \includegraphics[width=0.9\linewidth, height=0.9\linewidth]{Wk2/decay_turb_128_default_energy.png}
+  \caption{Energy Evolution}
+  \label{fig:128decayeng}
+  \end{subfigure}
+  \begin{subfigure}{0.3\textwidth}
+  \includegraphics[width=0.9\linewidth, height=0.9\linewidth]{Wk2/decay_turb_128_default_evo.png}
+  \caption{Spectrum Evolution}
+  \label{fig:128decayevo}
+  \end{subfigure}
+
+  \caption{Plots showing the energy spectrum and time evolution of the 128 grid size decay simulation}
+  \label{fig:128decayenergy}
+  \end{figure}
+
+  The magnetic and thermal energy had no relevance to these simulations; it's just part of the MATLAB script that I forgot to remove.
+
+  I learnt that it's good to run the simulations at different resolutions starting with the lowest as it allows you to get a rough idea of what is going to happen without the expense of computing time. It also helps as you can compare with the model to see whether the configuration used is worth investigating. The higher resolutions could differ as turbulence depends strongly on all length scales in the inertial subrange, which are included in the bigger simulations, but it still helps to see what could happen.
 
 
 \end{document}
