@@ -2,3 +2,4 @@ images/
 output/
 main.synctex.gz
 theory.synctex.gz
+joinpdf.sh

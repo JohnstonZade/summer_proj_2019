@@ -122,13 +122,15 @@
 
   \begin{figure}[!h]
    \centering
-  \begin{subfigure}{0.3\textwidth}
-  \includegraphics[width=0.9\linewidth, height=0.9\linewidth]{Wk2/cont_turb_256_default.png}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+  \includegraphics[width=0.8\linewidth, height=0.9\linewidth]{Wk2/cont_turb_256_default.png}
   \caption{Averaged Spectrum}
   \label{fig:256contspec}
   \end{subfigure}
-  \begin{subfigure}{0.3\textwidth}
-  \includegraphics[width=0.9\linewidth, height=0.9\linewidth]{Wk2/cont_turb_256_default_energy.png}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+  \includegraphics[width=0.8\linewidth, height=0.9\linewidth]{Wk2/cont_turb_256_default_energy.png}
   \caption{Energy Evolution}
   \label{fig:256conteng}
   \end{subfigure}
@@ -139,22 +141,25 @@
 
   \textbf{Decay:} The energy spectrum (Fig \ref{fig:128decayspec}), averaged over the first two turnover cycles, is not as well defined as the continuous case. I think this is because the energy depends on time instead of being approximately constant. The energy evolution (Fig. \ref{fig:128decayeng}) shows that the total kinetic energy decreases over time due to dissipation from viscosity.
 
-  For the spectrum evolution (Figure \ref{fig:128decayevo}) I took snapshots of the spectrum at 3 second intervals, with a snapshot at 0.1 seconds to observe the energy input (the curve sharply peaked at $k \sim 10$). We see that the energy cascades down through the length scales directly after input (at 3 seconds), and then decreases as it is dissipated as heat at the micro scale (shown by the ``sinking" of the spectrum). This is expected as we saw that the total energy in Fig. \ref{fig:128decayeng} is decreasing.
+  For the spectrum evolution (Figure \ref{fig:128decayevo}) I took snapshots of the spectrum at 3 second intervals, with a snapshot at 0.1 seconds to observe the energy input (the curve sharply peaked at $k \sim 10$). We see that the energy cascades down through the length scales directly after input (at 6 seconds), and then decreases as it is dissipated as heat at the micro scale (shown by the ``sinking" of the spectrum). This is expected as we saw that the total energy in Fig. \ref{fig:128decayeng} is decreasing.
 
-  \begin{figure}[!h]
+  \begin{figure}[h]
    \centering
-  \begin{subfigure}{0.3\textwidth}
-  \includegraphics[width=0.9\linewidth, height=0.9\linewidth]{Wk2/decay_turb_128_default.png}
+  \begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=0.8\linewidth, height=0.8\linewidth]{Wk2/decay_turb_128_default.png}
   \caption{Averaged Spectrum}
   \label{fig:128decayspec}
   \end{subfigure}
-  \begin{subfigure}{0.3\textwidth}
-  \includegraphics[width=0.9\linewidth, height=0.9\linewidth]{Wk2/decay_turb_128_default_energy.png}
+  \begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=0.8\linewidth, height=0.8\linewidth]{Wk2/decay_turb_128_default_energy.png}
   \caption{Energy Evolution}
   \label{fig:128decayeng}
   \end{subfigure}
-  \begin{subfigure}{0.3\textwidth}
-  \includegraphics[width=0.9\linewidth, height=0.9\linewidth]{Wk2/decay_turb_128_default_evo.png}
+  \begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=0.8\linewidth, height=0.8\linewidth]{Wk2/decay_turb_128_default_evo.png}
   \caption{Spectrum Evolution}
   \label{fig:128decayevo}
   \end{subfigure}
