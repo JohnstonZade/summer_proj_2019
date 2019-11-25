@@ -85,4 +85,57 @@
   giving us Kolmogorov's result.
 
   The structure function $\langle[u_l]^2 \rangle = \langle [u(x+l)-u(x)]^2\rangle$ measures how smooth the velocity distribution is for a given length scale. It is small at large $l$ as velocity is continous at that scale, and large at small $l$ as velocity can change appreciatively over that scale.
+
+  \textbf{MHD Equations: }
+  Using $D/Dt = \partial / \partial t + \B{u}\cdot\nabla$ as the Lagrangian derivative.
+  % \begin{align*}
+  %   \frac{D\rho}{Dt} &= -\rho \nabla\cdot\B{u} \\
+  %
+  %   \rho \frac{D\B{u}}{Dt} &= -\nabla\left(c_s^2\rho + \frac{B^2}{8\pi}\right) + \frac{\B{B}\cdot\nabla\B{B}}{4\pi} + \nu \nabla^2 \B{u}\\
+  %
+  %   \frac{D\B{B}}{Dt} = \B{B}cdot\nabla\B{u} - \B{B}\nabla\cdot\B{u} + \eta \nabla^2\B{B}
+  % \end{align*}
+
+  \begin{align}
+        \frac{D\rho}{Dt} &= -\rho \nabla\cdot\B{u} \\
+        \rho \frac{D\B{u}}{Dt} &= -\nabla\left(c_s^2\rho + \frac{B^2}{8\pi}\right) + \frac{(\B{B}\cdot\nabla)\B{B}}{4\pi} + \nu \nabla^2 \B{u} \\
+        \frac{D\B{B}}{Dt} &= (\B{B}\cdot\nabla)\B{u} - \B{B}\nabla\cdot\B{u} + \eta \nabla^2\B{B}
+  \end{align}
+  Equation 1 is the mass continuity equation (what comes in must go out).
+
+  Equation 2 gives the forces on the fluid:
+  \begin{itemize}
+    \item $-\nabla\left(c_s^2\rho + \frac{B^2}{8\pi}\right)$: Says that the higher the mass and magnetic field density, the greater the force is on the fluid in a direction away from that density.
+
+    \item $\frac{\B{B}\cdot\nabla\B{B}}{4\pi}$: acts as a ``tension" on the magnetic field lines (?); i.e. if the magnetic field lines are perturbed it acts to restore to its inital condition.
+
+    \item $\nu \nabla^2 \B{u}$: usual viscosity term in the fluid.
+  \end{itemize}
+
+  Equation 3 determines the evolution of the magnetic field. Looks similar to the mass continuity equation:
+  \begin{itemize}
+    \item Not exactly sure about the first two terms
+
+    \item $\eta \nabla^2\B{B}$: The ``viscosity" term of the magnetic field; $\eta$ is the resistance of the charged fluid. Gives a similar spectrum for the energy in the magnetic field as the one for the kinetic energy.
+  \end{itemize}
+
+  \textbf{Critical Balance:} For turbulence in MHD, critical balance is the assumption that
+  $$
+    k_\perp u_{\perp k} \sim k_\| v_A
+  $$
+  across all scales in the inertial range, where $k_\perp$ and $k_\|$ are the components of $\B{k}$ perpendicular and parallel to the magnetic field. Unlike in hydrodynamic turbulence, eddies in MHD spread out along the magnetic field lines as energy is cascaded down.
+
+  Alf\'ven waves are shear waves (i.e. doesn't compress fluid $\iff \nabla\cdot\B{u}=0$) that travel through a charged fluid along magnetic field lines. Alf\'ven waves have the following dispersion relationship:
+  $$
+    \omega = k_\| v_A
+  $$
+  where $k_\|$ is the component of the wavevector parallel to the magnetic field and $v_A = B_0 / \sqrt{4\pi \rho}$ is the Alf\'ven velocity at which the waves move, where $B_0$ and $\rho$ are the magnetic field strength and fluid density. Because they travel along the magnetic field lines, viscosity doesn't affect them as much as it does sonic waves because the particles can't ``talk" to each other. This means that smaller scale structures that would otherwise have been lost due to viscosity survive; this is what allowed finer details in the solar wind to be observed near Earth.
+
+  When simulating turbulence in MHD we choose a box whose size is small compared to the length scales of the forcing. We can consider the ``forcing" on this box to be the energy coming from the energy cascade at larger scales. We align the box such that the longest edge is parallel to the magnetic field lines. Call this length $L_x$, and $L_y$ the length of the side perpendicular to the magnetic fields. Then:
+  $$
+    k_\| = \frac{2\pi}{L_x}, \ k_\perp = \frac{2\pi}{L_y}
+  $$
+  In order to respect the assumption of critical balance, these lengths must satisfy
+  $L_y/L_x \sim u_{\perp k}/v_A$. As $u_{\perp k} \ll v_A$ generally, we have that $L_y \ll L_x$ giving our region of interest a rectangle shape.
+
 \end{document}

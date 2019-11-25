@@ -54,6 +54,7 @@
 \newcommand{\LeftImplies}{\underline{$\Leftarrow$:} }
 \newcommand{\RightImplies}{\underline{$\Rightarrow$:} }
 \newcommand{\cycle}[1]{\langle #1 \rangle}
+\newcommand{\B}[1]{\mathbf{#1}}
 
 \pagestyle{fancyplain}
 \headheight 35pt
@@ -114,7 +115,7 @@
   \section*{Week 2: 18 Nov - 22 Nov}
   This week I ran bigger simulations for both decay and forced turbulence from last week in order to be able to plot the energy spectrum and time evolution. The grid size ranged from 32 to 256, and runs over 30 seconds. All simulations left the parameters in \verb|athinput.turb| unchanged.
 
-  Calculated the turnover time $\tau \sim L/u_l$ of eddies on the scale of the box to get an idea of the timescales involved in the energy cascade. This is important in the decaying case as all the input energy dissipates within a few turnover times, so this allowed me to get an approximate time range to average the energy spectrum over. For these simulations, I used $L=1$ and $u_L = \sqrt{u^2_x+u^2_y+u^2_z}$ taken at the start of the simulation from the \verb|Turb.hst| file.
+  Calculated the turnover time $\tau \sim L/u_l$ of eddies on the scale of the box to get an idea of the timescales involved in the energy cascade. This is important in the decaying case as all the input energy dissipates within a few turnover times, so this allowed me to get an approximate time range to average the energy spectrum over. For the decay simulations I used $L=1$ and $u_L = \sqrt{u^2_x+u^2_y+u^2_z}$ taken at the start of the simulation; for the continuous simulations the average turnover time in the saturated state was used. The data was gotten from the \verb|Turb.hst| file.
 
   \textbf{Continuous Forcing:} For the continously forced case, the 256 grid size gave the best result. This is expected as it is able to simulate smaller scale eddies compared to lower resolution simulations, allowing more of the energy cascade to be observed. We see that the energy spectrum does follow the $k^{-5/3}$ law (shown in Fig. \ref{fig:256contspec}) for a given range of wavevectors.
 
@@ -122,15 +123,15 @@
 
   \begin{figure}[!h]
    \centering
-  \begin{subfigure}{.5\textwidth}
+  \begin{subfigure}{.4\linewidth}
     \centering
-  \includegraphics[width=0.8\linewidth, height=0.9\linewidth]{Wk2/cont_turb_256_default.png}
+  \includegraphics[width=0.9\linewidth, height=\linewidth]{Wk2/cont_turb_256_default.png}
   \caption{Averaged Spectrum}
   \label{fig:256contspec}
   \end{subfigure}
-  \begin{subfigure}{.5\textwidth}
+  \begin{subfigure}{.4\linewidth}
     \centering
-  \includegraphics[width=0.8\linewidth, height=0.9\linewidth]{Wk2/cont_turb_256_default_energy.png}
+  \includegraphics[width=0.9\linewidth, height=\linewidth]{Wk2/cont_turb_256_default_energy.png}
   \caption{Energy Evolution}
   \label{fig:256conteng}
   \end{subfigure}
@@ -143,23 +144,25 @@
 
   For the spectrum evolution (Figure \ref{fig:128decayevo}) I took snapshots of the spectrum at 3 second intervals, with a snapshot at 0.1 seconds to observe the energy input (the curve sharply peaked at $k \sim 10$). We see that the energy cascades down through the length scales directly after input (at 6 seconds), and then decreases as it is dissipated as heat at the micro scale (shown by the ``sinking" of the spectrum). This is expected as we saw that the total energy in Fig. \ref{fig:128decayeng} is decreasing.
 
-  \begin{figure}[h]
-   \centering
-  \begin{subfigure}{0.5\textwidth}
+  \begin{figure}[!h]
+
+  \begin{subfigure}{0.2\linewidth}
   \centering
-  \includegraphics[width=0.8\linewidth, height=0.8\linewidth]{Wk2/decay_turb_128_default.png}
+  \includegraphics[width=1.5\linewidth]{Wk2/decay_turb_128_default.png}
   \caption{Averaged Spectrum}
   \label{fig:128decayspec}
   \end{subfigure}
-  \begin{subfigure}{0.5\textwidth}
+  \hfill
+  \begin{subfigure}{0.2\linewidth}
   \centering
-  \includegraphics[width=0.8\linewidth, height=0.8\linewidth]{Wk2/decay_turb_128_default_energy.png}
+  \includegraphics[width=1.5\linewidth]{Wk2/decay_turb_128_default_energy.png}
   \caption{Energy Evolution}
   \label{fig:128decayeng}
   \end{subfigure}
-  \begin{subfigure}{0.5\textwidth}
+  \hfill
+  \begin{subfigure}{0.2\linewidth}
   \centering
-  \includegraphics[width=0.8\linewidth, height=0.8\linewidth]{Wk2/decay_turb_128_default_evo.png}
+  \includegraphics[width=1.5\linewidth]{Wk2/decay_turb_128_default_evo.png}
   \caption{Spectrum Evolution}
   \label{fig:128decayevo}
   \end{subfigure}
@@ -171,6 +174,66 @@
   The magnetic and thermal energy had no relevance to these simulations; it's just part of the MATLAB script that I forgot to remove.
 
   I learnt that it's good to run the simulations at different resolutions starting with the lowest as it allows you to get a rough idea of what is going to happen without the expense of computing time. It also helps as you can compare with the model to see whether the configuration used is worth investigating. The higher resolutions could differ as turbulence depends strongly on all length scales in the inertial subrange, which are included in the bigger simulations, but it still helps to see what could happen.
+
+  \newpage
+  \section*{Week 3: 25 Nov - 29 Nov}
+
+  Ran the linear wave problem in Athena to observe Alf\'ven waves. The pressure and density of the plasma should be constant as these waves travel, which was observed in the simulation (Fig. \ref{fig:linwave}). Alf\'ven waves have the following dispersion relationship:
+  $$
+    \omega = k_\| v_A
+  $$
+  where $k_\|$ is the component of the wavevector parallel to the magnetic field and $v_A = B_0 / \sqrt{4\pi \rho}$ is the Alf\'ven velocity at which the waves move, where $B_0$ and $\rho$ are the magnetic field strength and fluid density.
+
+  The linear wave problem has the default settings (I'm not sure about units): $\rho = 1$, $\B{B}_0=(1,\sqrt{2}, 0.5) \implies B_0 = \sqrt{13}/2$. This gives a value for the Alf\'ven velocity of $v_A \approx 0.5086$. The next thing to do is to see whether the wave gives us this value through the dispersion relationship above.
+
+  \begin{figure}[!h]
+   \centering
+  \begin{subfigure}{0.3\textwidth}
+  \includegraphics[width=\linewidth, height=1.1\linewidth]{Wk3/alfvenlinwave_vel.png}
+  \caption{Velocity Magnitude}
+  \label{fig:linwave_vel}
+  \end{subfigure}
+  \begin{subfigure}{0.3\textwidth}
+  \includegraphics[width=\linewidth, height=1.1\linewidth]{Wk3/alfvenlinwave_press.png}
+  \caption{Pressure}
+  \label{fig:linwave_press}
+  \end{subfigure}
+  \begin{subfigure}{0.3\textwidth}
+  \includegraphics[width=\linewidth, height=1.1\linewidth]{Wk3/alfvenlinwave_rho.png}
+  \caption{Density}
+  \label{fig:linwave_rho}
+  \end{subfigure}
+
+  \caption{Plots of different properties of the fluid as a linear wave passes through}
+  \label{fig:linwave}
+  \end{figure}
+
+  I wrote a small Python script to calculate and compare the simulation and theoretical Alf\'ven velocities.
+  The angular frequency was calculated by measuring the (simulated) time it took for a peak of the wave to travel through the box, as it has periodic boundary conditions, and dividing this by $2\pi$. The magnitude of the wavevector was gotten by dividing $2\pi$ by the wavelength. All quantities were eyeballed as only a quick check was needed. The result is seen in Fig. \ref{fig:disp_rel}, showing the dispersion relationship holds in the simulation.
+
+  \begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Wk3/dispersion_rel}
+    \caption{Output of the Python script I wrote}
+    \label{fig:disp_rel}
+  \end{figure}
+
+  \
+  
+  \textbf{Questions:}
+  \begin{itemize}
+    \item Is $\B{k}$ automatically parallel to $\B{B}$ when the \verb|ang_3_vert| variable is set to \verb|True|?
+
+    No, it just rotates the axes such that $\B{k}$ is along the y-axis. Can make it parallel to $\B{B}$ through code.
+
+    \item Why are the density and pressure constant for an Alf\'ven wave?
+
+    Because the Alf\'ven wave is a \textbf{shear wave} i.e. no compression at all. This means $\nabla\cdot\B{u}=0 \implies D\rho/Dt = 0$ i.e. the density is constant in time and thus so is the pressure.
+
+    \item Why is a rectangle used insted of a square for the region of interest?
+
+    Just to make the numbers work out right; there is no real reason for it in this case.
+  \end{itemize}
 
 
 \end{document}
