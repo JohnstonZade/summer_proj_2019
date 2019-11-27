@@ -1,1 +1,1 @@
-git add main.* theory.* zade_writeup.pdf
+git add main.* theory.* zade_writeup.pdf python/

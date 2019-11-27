@@ -68,7 +68,7 @@
   \fancyhf{}
   \headheight 35pt
   \chead{\textbf{\Large Turbulence in Plasma}} % Edit for title
-  \rhead{\course \\ Zade Johnston}
+  \rhead{Zade Johnston \\ \course}
   \lfoot{}
   \cfoot{}
   \headsep 1.5em
@@ -219,8 +219,8 @@
   \end{figure}
 
   \
-  
-  \textbf{Questions:}
+
+  \textbf{Questions (answered):}
   \begin{itemize}
     \item Is $\B{k}$ automatically parallel to $\B{B}$ when the \verb|ang_3_vert| variable is set to \verb|True|?
 
@@ -232,8 +232,16 @@
 
     \item Why is a rectangle used insted of a square for the region of interest?
 
-    Just to make the numbers work out right; there is no real reason for it in this case.
+    Just to make the numbers work out right such that the waves are continuous over the periodic boundaries. Can make it a square if needed.
   \end{itemize}
+
+  The next step was simulating turbulence in the case of MHD. Essentialy the same code was used as the hydrodynamic turbulence case, with a couple of updates to allow for the initialisation of a mean magnetic field in the region of interest.
+
+  In order to get critical balance, we want $u_\perp \sim v_{A0} = B_0/\sqrt{4\pi\rho}$. Athena sets $4\pi\to 1$, so we get $v_{A0} = B_0/\sqrt{\rho}$. We can set $B_0=1$ and $\rho=1$ such that $u_\perp \sim v_{A0}=1$. To do this in the simulation I've set $dE/dt=1$ as this means $u^3_\perp/L \sim 1$ (the box size has $L=1$; letting everything work out to 1 makes it simpler).
+
+  Forgot to add the magnetic field flag so have to redo larger simulations. \textbf{A good check is to look at the first few snapshots in VisIt to see if the magnetic fields (or other parameters) are set up the way I wanted.}
+
+  Trying out Athena's Python codes for plotting and reading data files to help write the \verb|spectrum.m| code in Python.
 
 
 \end{document}
