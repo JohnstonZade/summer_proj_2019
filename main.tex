@@ -241,7 +241,27 @@
 
   Forgot to add the magnetic field flag so have to redo larger simulations. \textbf{A good check is to look at the first few snapshots in VisIt to see if the magnetic fields (or other parameters) are set up the way I wanted.}
 
-  Trying out Athena's Python codes for plotting and reading data files to help write the \verb|spectrum.m| code in Python.
+  Trying out Athena's Python codes for plotting and reading data files to help write the \verb|spectrum.m| code in Python. Haven't made much progress yet as I've been focusing on writing the \verb|structure_function.py| code.
 
+  Originally wrote \verb|structure_function.py| using just lists. For 1 million random pairs of points on a $128^3$ continuously forced turbulence grid (non-MHD), the average run time was about 100 seconds. After learning about \verb|numpy| and utilizing this, the same problem had its run time reduced to about 20 seconds; this is a massive improvement. Not sure whether I need to test for a larger number of points. Below in Fig. \ref{fig:structure_plots} I've added the inital output of the function; I'm not sure if it is what it should be yet but I think it is a good start. Will check with Jono next week.
+
+  \begin{figure}[!h]
+   \centering
+  \begin{subfigure}{.4\linewidth}
+    \centering
+  \includegraphics[width=0.9\linewidth]{Wk3/l_dist.png}
+  \caption{Distribution of lengths in box}
+  \label{fig:l_dist}
+  \end{subfigure}
+  \begin{subfigure}{.4\linewidth}
+    \centering
+  \includegraphics[width=0.9\linewidth]{Wk3/structure_function.png}
+  \caption{Structure Function}
+  \label{fig:struct_func}
+  \end{subfigure}
+
+  \caption{Output of the structure function code for the hydrodynamic $128^3$ forced turbulence simulation}
+  \label{fig:structure_plots}
+  \end{figure}
 
 \end{document}

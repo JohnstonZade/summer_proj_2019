@@ -4,9 +4,9 @@
 import sys
 sys.path.insert(1, '/home/zade/athena/vis/python')
 # -- for testing on laptop -- #
-
 from athena_read import athdf, vtk
-from numpy import max, pi
+import numpy as np
+from math import pi
 # plotting
 # fft
 
@@ -36,21 +36,28 @@ def spectrum(folder_name, plot_title, do_mhd=1, do_full_calc=1):
         read_f = lambda f: athdf(f)  # put athena read file here
 
         # create grid of K from first time step
-        D = read_f(fname(nums[0]))
-        x = D[0]
-        y = D[1]
-        z = D[2]
+        filename = '/media/zade/Seagate Expansion Drive/Summer_Project_2019/'
+        filename += 'hydro_cont_turb_32/Turb.out2.00128.athdf'
+        D = athdf(filename)
+        # D = read_f(fname(nums[0]))
+        x = D['x1f']  # Do I use x1f or x1v?
+        y = D['x2f']
+        z = D['x3f']
         dx = x[1] - x[0]
         dy = y[1] - y[0]
         dz = z[1] - z[0]
-        Ls = [max(x)+dx, max(y)+dy, max(z)+dz]
+        Ls = [np.max(x), np.max(y), np.max(z)]
         Ns = [len(x), len(y), len(z)]
 
+        Ls
         # create grid in k-space
+        # not sure if best way to get FT standard [0 1 2 3...-N/2 -N/2+1...-1]
         K = {}
         for k in range(3):
-            K[k] = 2j*pi/Ls[k]
-        # TODO: how to get [0 1 2 3 ... -N/2]? Read computational physics
+            K[k] = 2j*pi/Ls[k]*ft_array(Ns[k])
+
+        K3d = np.ndarray([K[0], K[1], K[2]])
+        K3d
 
         # TODO: make a structure/dict to hold spectrum
 
@@ -66,6 +73,10 @@ def spectrum(folder_name, plot_title, do_mhd=1, do_full_calc=1):
     # save figure
     # plot energy time evolution
     # save figure
+
+
+def ft_array(N):
+    return np.concatenate((np.arange(1, N//2, 1), [-N//2], np.arange(-N//2+1, 0, 1)))
 
 
 def ath_plot_hst(folder_name, plot_title):
