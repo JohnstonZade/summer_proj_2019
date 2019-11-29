@@ -19,6 +19,7 @@ def get_mag(X1, X2):
     return sqrt(sum((x2-x1)**2, axis=1))
 
 
+# Check todos
 def structure_function(fname, do_ldist=0):
     '''Calculates and plots structure function
     assuming isotropy of turbulence.
@@ -44,8 +45,6 @@ def structure_function(fname, do_ldist=0):
         names = ['RootGridX3', 'RootGridX2', 'RootGridX1']
         return array([data[name][1]-data[name][0] for name in names])
 
-    # athena_read reads in coordinates as (z, y, x) for some reason
-    # Not sure how to get around it
     def get_vel(p):
         '''Returns the velocity vector at a given point.'''
         tp = tuple(p)
@@ -72,18 +71,18 @@ def structure_function(fname, do_ldist=0):
 
     # Get N_p pairs of random points on the grid
     # Assuming turbulence is isotropic
+    # TODO:
     # Am I wanting to average over all time or make a time evolution?
     # Do I need to randomize points for each file?
     N_p = int(1e6)
     L1 = randint(0, grid, size=(N_p, len(grid)))
     L2 = randint(0, grid, size=(N_p, len(grid)))
-    # Just using numpy speeds up tremendously
-    # L1 = [randint(0, grid) for i in range(N_p)]
-    # L2 = [randint(0, grid) for i in range(N_p)]
+    print("Points generated")
 
     # Get actual position vector components for each pair of grid points
     x1_vec = array([get_point(p) for p in L1])
     x2_vec = array([get_point(p) for p in L2])
+
     # Find distance between each pair of points
     # Why do I need to be careful with periodicity?
     l_vec = get_mag(x1_vec, x2_vec)
@@ -117,6 +116,7 @@ def structure_function(fname, do_ldist=0):
         Δu_avg[i] = get_mean(i)
         l_axis[i] = 0.5*(l_grid[i]+l_grid[i+1])
 
+    # TODO: Am I meant to be using histogram?
     plt.plot(l_axis, Δu_avg)
     plt.title(r'$S_2(l)$')
     plt.xlabel(r'$l$')
@@ -124,4 +124,4 @@ def structure_function(fname, do_ldist=0):
     plt.show()
 
 
-structure_function('')
+structure_function('', 1)
