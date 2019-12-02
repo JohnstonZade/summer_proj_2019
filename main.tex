@@ -245,6 +245,8 @@
 
   Originally wrote \verb|structure_function.py| using just lists. For 1 million random pairs of points on a $128^3$ continuously forced turbulence grid (non-MHD), the average run time was about 100 seconds. After learning about \verb|numpy| and utilizing this, the same problem had its run time reduced to about 20 seconds; this is a massive improvement. Not sure whether I need to test for a larger number of points. Below in Fig. \ref{fig:structure_plots} I've added the inital output of the function; I'm not sure if it is what it should be yet but I think it is a good start. Will check with Jono next week.
 
+  I've just realised that it may not look right as I've used the snapshot in the first 0.1 second after the simulation has begun, so the turbulence will not have fully developed. Will look into more detail next week.
+
   \begin{figure}[!h]
    \centering
   \begin{subfigure}{.4\linewidth}
