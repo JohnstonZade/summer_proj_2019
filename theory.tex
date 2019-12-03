@@ -138,4 +138,28 @@
   In order to respect the assumption of critical balance, these lengths must satisfy
   $L_y/L_x \sim u_{\perp k}/v_A$.
 
+  \textbf{Structure Function Code:} A quick overview of how the structure function code works:
+  \begin{itemize}
+    \item Read in data from Athena output file, get grid, position, velocity, $\B{B}$-field etc. information.
+
+    \item Generate a given number of pairs of random points in the grid. Modified such that the pairs of points are closer together to observe finer detail.
+
+    \item Translate to position vectors and find the distance $l$ between each pair of points.
+
+    \item Get the velocity information at each pair of points and calculate $\Delta u^2 \equiv |\B{u}_1 - \B{u}_2|^2$. Can do the same with the magnetic field if using MHD.
+
+    \item Create a grid of $l$ values to bin and for a given range of $l$s average the corresponding $\Delta u^2$. We now have a relationship between $l$ and $\langle \Delta u^2 \rangle$; this is the structure function.
+  \end{itemize}
+
+  When doing an MHD simulation, the following additional steps are done:
+
+  \begin{itemize}
+    \item For each pair of points, find the angle between $\B{l}$ and $\B{B}_{\text{mean}}$, where $\B{B}_{\text{mean}} = \frac{1}{2}[\B{B}_1 + \B{B}_2]$, using
+    $$
+      \cos \theta = \hat{\B{l}} \cdot \hat{\B{B}}_{\text{mean}}
+    $$
+
+    \item Bin the corresponding $l$ values against a range of $\theta$ values. The $l_{\|}$ values are in the range $0^\circ\leq \theta < 15^\circ$ and the $l_\perp$ values are in the range $45^\circ\leq \theta < 90^\circ$. Plot the velocity and magnetic field structure function for each angle bin. The structure function for the parallel distances should fall off faster.
+  \end{itemize}
+
 \end{document}
