@@ -1,5 +1,7 @@
 images/
+Readings/
 output/
 main.synctex.gz
 theory.synctex.gz
+to_do.synctex.gz
 joinpdf.sh

@@ -150,7 +150,7 @@
 
     \item Create a grid of $l$ values to bin and for a given range of $l$s average the corresponding $\Delta u^2$. We now have a relationship between $l$ and $\langle \Delta u^2 \rangle$; this is the structure function.
   \end{itemize}
-
+  The direction doesn't matter as the turbulence is isotropic, so we always see the structure function following $l^{2/3}$.
   When doing an MHD simulation, the following additional steps are done:
 
   \begin{itemize}
@@ -161,5 +161,13 @@
 
     \item Bin the corresponding $l$ values against a range of $\theta$ values. The $l_{\|}$ values are in the range $0^\circ\leq \theta < 15^\circ$ and the $l_\perp$ values are in the range $45^\circ\leq \theta < 90^\circ$. Plot the velocity and magnetic field structure function for each angle bin. The structure function for the parallel distances should fall off faster.
   \end{itemize}
+  The parallel and perpendicular structure functions differ now as the magnetic field introduces an anisotropy in the velocity.
+
+  \textbf{Braginskii (not sure of proper name of theory):} In a normal fluid, the temperature $T$ is proportional to $\langle (v - \langle v \rangle)^2 \rangle$, and the pressure ($p = \rho T$) is proportional to temperature. The temperature is isotropic (?) in this case as collisions in the fluid average out the velocity components.
+
+  For a plasma with magnetic field lines threaded through, we can't define a single temperature/pressure now as particles have velocity components parallel and perpendicular to the field lines. As the collision frequency $\nu_c$ is generally low, these components can't equalise. We need to define a parallel and perpendicular pressure, $p_\|$ and $p_\perp$, to close the fluid's equations of motion.
+
+  In the high collision regime ($\nu_c \gg 1$) we should get back the MHD equations as the velocities can now equalise.
+
 
 \end{document}

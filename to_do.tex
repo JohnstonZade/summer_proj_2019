@@ -1,0 +1,79 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{fullpage}
+\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{lastpage}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[nodayofweek, level]{datetime}
+\usepackage{bbm}
+\usepackage{cases}
+
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+
+%% ----- COMMANDS -----
+% Headings
+\newcommand\course{Project Writeup} % Edit for course name
+\newcommand{\theorem}[1]{\underline{\textbf{#1}} \\}
+
+% Notation
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\modulo}[1]{\text{ mod }#1}
+\newcommand{\kernel}[1]{\text{ker }#1}
+\newcommand{\LeftImplies}{\underline{$\Leftarrow$:} }
+\newcommand{\RightImplies}{\underline{$\Rightarrow$:} }
+\newcommand{\cycle}[1]{\langle #1 \rangle}
+\newcommand{\B}[1]{\mathbf{#1}}
+
+\pagestyle{fancyplain}
+\headheight 35pt
+\rhead{\course}
+\lfoot{}
+\cfoot{}
+\headsep 1.5em
+
+\fancypagestyle{firststyle}
+{
+  \fancyhf{}
+  \headheight 35pt
+  \chead{\textbf{\Large Theory}} % Edit for title
+  \rhead{\course \\ Zade Johnston}
+  \lfoot{}
+  \cfoot{}
+  \rfoot{\small\thepage}
+  \headsep 1.5em
+}
+
+\begin{document}
+What to do over next week or so
+\begin{itemize}
+  \item Continue writing structure function and spectrum code.
+  \item Get python code working on Thunderbird.
+  \item Replace Athena src folder on both laptop and thunderbird.
+  \item Make sure CGL configures right as it is not compiling.
+  \item Run MHD simulations using Athena (compile as Jono said in email), comparing equations of state:
+  \begin{itemize}
+    \item Adiabatic - the usual MHD. Want to compare spectrum/structure function with CGl
+    \item CGL - first set $\nu_c\gg 1 \sim 10^8$ and compare with adiabatic. Also want $\beta=2p/B\gg 1$, so set $p=10$ or $100$. Note that this will take longer to run as sound waves travel faster meaning time step has to be shortened.
+  \end{itemize}
+  \item Decrease $\nu_c$ to try observe interesting effects that Jono wants to look at.
+\end{itemize}
+Don't be shy to ask Romain, and don't work on too many things at a time just yet.
+
+\textbf{Project Aim:} To look at turbulence in weakly collisonal plasma when $|\Delta p|\sim B^2$ using the Braginskii approximation, and use this to try gain insight into properties of the solar wind.
+
+
+\end{document}
