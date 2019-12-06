@@ -292,8 +292,43 @@
   \label{fig:structure_plot_update}
   \end{figure}
 
-  Updated the code to calculate the $l_{\|}$ and $l_\perp$ components of the separation vector relative to the magnetic field to observe the critical balance law after a struggle getting it to work.
+  Updated the code to calculate the $l_{\|}$ and $l_\perp$ components of the separation vector relative to the magnetic field to observe the critical balance law after a struggle getting it to work. The issue was that selecting the $l$ values based on their angle with the magnetic field was messing up their order, as they were moved to a new array but the code assumed an index correspondence between the velocity data and the $l$ values. Fixed this by using logical masks on both arrays at once to keep the order when performing the MHD calculations. Fig. \ref{fig:l_theta_plots} shows the output of this code on the same $128^3$ simulation as above but with magnetic fields enabled. They are potentially not correct as the parallel components in Fig. \ref{fig:l_par} don't seem to fall off quicker than the perpendicular components. Will check next week.
 
-  Next step is to talk with Jono about working with his modified Athena code.
+  \begin{figure}[!h]
+   \centering
+  \begin{subfigure}{.4\linewidth}
+    \centering
+  \includegraphics[width=0.9\linewidth]{Wk4/mhd_cont_turb_128_0.png}
+  \caption{Velocity and magnetic structure functions of parallel components}
+  \label{fig:l_par}
+  \end{subfigure}
+  \
+  \begin{subfigure}{.4\linewidth}
+    \centering
+  \includegraphics[width=0.9\linewidth]{Wk4/mhd_cont_turb_128_5.png}
+  \caption{Velocity and magnetic structure functions of perpendicular components}
+  \label{fig:l_perp}
+  \end{subfigure}
+
+  \caption{Output of the structure function code for the MHD $128^3$ forced turbulence simulation}
+  \label{fig:l_theta_plots}
+  \end{figure}
+
+  Animations of the full structure functions can be found \href{https://github.com/JohnstonZade/python_tools/tree/master/animate}{here}.
+
+  \newpage
+  \section*{Week 5: 9 Dec - 13 Dec}
+
+  The previous four weeks I learnt the basics of turbulence and critical balance in fluids and plasmas, and ran and explored some basic hydrodynamic and MHD simulations using Athena to get an idea of what the body of my project will be like. The aim of my project over the summer is the following (not 100\% sure at the moment):
+
+  \textbf{Project Aim:} To look at magneto-immutable turbulence in weakly collisonal plasmas when $|\Delta p|\sim B^2$ using the Braginskii approximation and in different regimes, and to potentially use the results of this to try gain insight into properties of the solar wind?
+
+  The first step is to run the CGL sim at at high collison frequency and compare to the same sim using an adiabatic EOS, as this regime of collison frequency gives back MHD with an adiabatic EOS (allows particle velocities and thus pressure to reach an equilibrium).
+
+  The input file had a $64\times 32\times 32$ grid box with a magnetic field of unit strength along the $x$-axis. Ran these simulations using the HLLE solver and got out a \href{https://github.com/JohnstonZade/python_tools/blob/master/animate/cgl_cont_turb_6432.gif}{CGL structure function} and \href{https://github.com/JohnstonZade/python_tools/blob/master/animate/mhd_cont_turb_6432.gif}{adiabatic MHD structure function}. Note that $\beta = \frac{8\pi p}{B^2} = 1$ in this case. These animations look so similar that I thought I had ran the same simulation twice, but there are subtle differences. This is a good sign as it does output what the theory predicts.
+
+  The next step is to try and obsereve critical balance in the CGL case, and then change the $\beta$ value to $100$. This will run about 10 times as slow but should give similar results.
+
+  After that, will lower the collision frequency and do similar analysis.
 
 \end{document}
