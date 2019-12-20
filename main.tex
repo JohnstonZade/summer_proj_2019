@@ -325,17 +325,27 @@
 
   The first step is to run the CGL sim at at high collison frequency and compare to the same sim using an adiabatic EOS, as this regime of collison frequency gives back MHD with an adiabatic EOS (allows particle velocities and thus pressure to reach an equilibrium).
 
-  The input file had a $64\times 32\times 32$ grid box with a magnetic field of unit strength along the $x$-axis. Ran these simulations using the HLLE solver and got out a \href{https://github.com/JohnstonZade/python_tools/blob/master/animate/cgl_cont_turb_6432.gif}{CGL structure function} and \href{https://github.com/JohnstonZade/python_tools/blob/master/animate/mhd_cont_turb_6432.gif}{adiabatic MHD structure function}. Note that $\beta = \frac{8\pi p}{B^2} = 1$ in this case. These animations look so similar that I thought I had ran the same simulation twice, but there are subtle differences. This is a good sign as it does output what the theory predicts.
+  The input file had a $2\times 1\times 1$ box (at a $64\times 32\times 32$ resolution) with a magnetic field of unit strength along the $x$-axis. Ran these simulations using the HLLE solver and got out a \href{https://github.com/JohnstonZade/python_tools/blob/master/animate/cgl_cont_turb_6432.gif}{CGL structure function} and \href{https://github.com/JohnstonZade/python_tools/blob/master/animate/mhd_cont_turb_6432.gif}{adiabatic MHD structure function}. Note that $\beta = \frac{8\pi p}{B^2} = 1$ in this case. These animations look so similar that I thought I had ran the same simulation twice, but there are subtle differences. This is a good sign as it does output what the theory predicts.
 
-  The next step is to try and obsereve critical balance in the CGL case, and then change the $\beta$ value to $100$. This will run about 10 times as slow but should give similar results.
+  The next step is to try and obsereve critical balance in the CGL case, and then change the $\beta$ value to $100$. This will run about 10 times as slow but should give similar results. After that, will lower the collision frequency and do similar analysis.
 
-  After that, will lower the collision frequency and do similar analysis.
+  The majority of this week was spent working on refining the structure function code and checking it on the results of the simulation above. I also added in some code to show the RMS fluctuations of the velocity and magnetic field over time.
 
+  \newpage
+  \section*{Week 6: 16 Dec - 20 Dec}
 
-  Monday: updated structure function code to animate both the full velocity structure function and the angle filtered ones over time. Will run a full one tonight/tomorrow.
-  Tues-Wed: Sick, didnt do much
-  Thursday: Ran some CGL sims to test structure function code on visibility of critical balance
-  Friday: Added diagnostics to check the rms of fluctuations of perpendicular velocity and B-field components
+  This week I ran a CGL simulation as in Week 5 but with a $128\times 64\times 64$ resolution. I played around with the energy input ($dE/dt$) at first as it needed to be set such that critical balance could be observed. The box has $L_\perp/L_\|=0.5$ so in order to have critical balance we need the amplitude of the perpendicular fluctuations of velocity and magnetic field to be about $0.5$. Setting $dE/dt=0.5$ allowed this to happen, as seen in Fig. \ref{fig:sim_fluc}.
 
+  \begin{figure}[!h]
+   \centering
+  \includegraphics[width=0.9\linewidth]{Wk6/cgl_cont_turb_dedt05nhigh3_fluc.png}
+
+  \caption{Perpendicular fluctuations of the simulation described above.}
+  \label{fig:sim_fluc}
+  \end{figure}
+
+  There is a correlation between the velocity and magnetic field fluctuations. This is because Alf\`ven waves are playing an important role in the structure of turbulence, and this causes a strong correlation when it is randomly forced.
+
+  Next steps to do when I get back are to run similar simuations at $\beta=100$ and then simulations with the collisional frequency lowered. I will try working on the spectrum code over Christmas.
 
 \end{document}
