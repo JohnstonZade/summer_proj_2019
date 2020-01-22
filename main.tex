@@ -268,7 +268,7 @@
 
   \newpage
   \section*{Week 4: 2 Dec - 6 Dec}
-  After talking with Jono about the structure function code I wrote last week, I updated it such that it generates a log spaced $l$-grid and generates the random points closer together in order to be able to see the finer details in the small $l$ range (inertial subrange). After updating the code we $l$ distribution and structure functions are shown in Fig. \ref{fig:structure_plot_update}. The lengths between the points are now skewed to be smaller which is what was wanted, and the structure function is very close to following Kolmogorov's $l^{2/3}$ rule.
+  After talking with Jono about the structure function code I wrote last week, I updated it such that it generates a log spaced $l$-grid and generates the random points closer together in order to be able to see the finer details in the small $l$ range (inertial subrange). After updating the code the $l$ distribution and structure functions are shown in Fig. \ref{fig:structure_plot_update}. The lengths between the points are now skewed to be smaller which is what was wanted, and the structure function is very close to following Kolmogorov's $l^{2/3}$ rule.
 
   I've created a \href{https://github.com/JohnstonZade/python_tools}{GitHub repo to hold the Python code that calculates these here}.
 
@@ -321,11 +321,11 @@
 
   The previous four weeks I learnt the basics of turbulence and critical balance in fluids and plasmas, and ran and explored some basic hydrodynamic and MHD simulations using Athena to get an idea of what the body of my project will be like. The aim of my project over the summer is the following:
 
-  \textbf{Project Aim:} To look at magneto-immutable turbulence in weakly collisonal plasmas when $|\Delta p|\sim B^2$ in the Braginskii and collisionless regimes, and to potentially use the results of this to try gain insight into properties of the solar wind.
+  \textbf{Project Aim:} To look at magneto-immutable turbulence in weakly collisonal plasmas when $|\Delta p|\sim B^2$ in the Braginskii and collisionless regimes, and to potentially use the results of this to try gain insight into properties of the solar wind. Want to at least be able to reproduce the data in Figures 3-5 in Jono's paper on magneto-immutable turbulence.
 
   The first step is to run the CGL sim at at high collison frequency and compare to the same sim using an adiabatic EOS, as this regime of collison frequency gives back MHD with an adiabatic EOS (allows particle velocities and thus pressure to reach an equilibrium).
 
-  The input file had a $2\times 1\times 1$ box (at a $64\times 32\times 32$ resolution) with a magnetic field of unit strength along the $x$-axis. Ran these simulations using the HLLE solver and got out a \href{https://github.com/JohnstonZade/python_tools/blob/master/animate/cgl_cont_turb_6432.gif}{CGL structure function} and \href{https://github.com/JohnstonZade/python_tools/blob/master/animate/mhd_cont_turb_6432.gif}{adiabatic MHD structure function}. Note that $\beta = \frac{8\pi p}{B^2} = 1$ in this case. These animations look so similar that I thought I had ran the same simulation twice, but there are subtle differences. This is a good sign as it does output what the theory predicts.
+  The input file had a $2\times 1\times 1$ box (at a $64\times 32\times 32$ resolution) with a magnetic field of unit strength along the $x$-axis. Ran these simulations using the HLLE solver and got out a \href{https://github.com/JohnstonZade/python_tools/blob/master/animate/cgl_cont_turb_6432.gif}{CGL structure function} and \href{https://github.com/JohnstonZade/python_tools/blob/master/animate/mhd_cont_turb_6432.gif}{adiabatic MHD structure function}. Note that $\beta = \frac{8\pi p}{B^2} = 1$ in this case. These animations look so similar that I thought I had ran the same simulation twice, but there are subtle differences. This is a good sign as it does output what the theory predicts. perfict
 
   The next step is to try and obsereve critical balance in the CGL case, and then change the $\beta$ value to $100$. This will run about 10 times as slow but should give similar results. After that, will lower the collision frequency and do similar analysis.
 
@@ -348,4 +348,10 @@
 
   Next steps to do when I get back are to run similar simuations at $\beta=100$ and then simulations with the collisional frequency lowered and to try get back the results in Jono's magneto-immutable turbulence paper. I will try to work on the spectrum code over Christmas. Will also need to add some new diagnostics such as the PDF on page 11 of the magneto-immutable turbulence paper, as well as organising output files better. Will also have a chat with Jono about what he knows about the Sun as I've found that really interesting.
 
+  \newpage
+  \section*{Week 7: 20 Jan - 24 Jan}
+
+  Started off the week reading over the theory needed to bring myself back up to speed after the Christmas break, mainly the amplitude limits and magneto-immutable papers. Information slowly making sense as getting used to reading how papers are written.
+
+  Will continue running simulations with decresing collision frequency.
 \end{document}
