@@ -353,5 +353,17 @@
 
   Started off the week reading over the theory needed to bring myself back up to speed after the Christmas break, mainly the amplitude limits and magneto-immutable papers. Information slowly making sense as getting used to reading how papers are written.
 
-  Will continue running simulations with decresing collision frequency.
+  Will continue running simulations with decresing collision frequency. Have increased pressure by a factor of 100. Sound speed depends on pressure so increased pressure means increased sound speed. Athena compensates by lowering the time step meaning simulation takes longer to run. Jono will show me how to use NeSI on Friday to hopefully speed things up.
+
+  Am still working on spectrum code, need to buckle down and get it done. Two ways to calculate the PDF graph:
+  \begin{itemize}
+    \item Calculate $\B{\hat{b}\hat{b}}:\nabla \B{u}=b_ib_j\partial_i u_j$ explicitly. Gradient of $\B{u}$ a little hard to do numerically so can Fourier transform $(u_x,u_y,u_z)\to (K_x,K_y,K_z)$ and calculate $\partial_iu_j=\text{ifft}(K_i\text{fft}(u_j))$ and then plugging into sum. Computationally expensive but accurate.
+
+    \item Rearrange Equation 2.4 in paper to get $\B{\hat{b}\hat{b}}:\nabla \B{u}=\Delta p/\mu_{\text{Brag}}$ where $\mu_{\text{Brag}}=p_0/\nu_c$. Can use in Athena as $\nu_c, p_0$ are parameters and $\Delta p$ is output. Couldn't be used in SNOOPY as $\Delta p$ was given by Equation 2.4 there.
+  \end{itemize}
+  Then histogram. Can use these two methods as a check when in the Braginskii regime:
+  $$
+    \mu_\text{Brag}\gg 1 \text{ and } \omega_A\ll \nu_c \implies p_0\gg 1 
+  $$
+
 \end{document}
