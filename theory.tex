@@ -169,5 +169,30 @@
 
   In the high collision regime ($\nu_c \gg 1$) we should get back the MHD equations as the velocities can now equalise.
 
+  \newpage
+
+  \textbf{NeSI Commands and Info:}
+  \begin{itemize}
+    \item Don't run anythin big on login computer; it is fine to compile Athena or generate some plots but use scratch folder for bigger stuff.
+
+    \item Make sure to choose a grid size that fits 40 meshblocks.
+
+    \item Submitting: debug queue has maximum of 15 minutes, while full queue has maximum of 24 hours.
+
+    \item Careful about deleting files as sharing with Jono.
+
+    \item \verb|cds|: change current directory to scratch folder. Run submit files from here, but not used for storing anything long term. Use project folder for that.
+
+    \item \verb|cdp|: change current directory to project folder. Use for storing data or important files, but leave trivial stuff on login computer.
+
+    \item \verb|squeue|: shows entire queue.
+
+    \item \verb|qsz|: shows only my jobs submitted to queue.
+
+    \item \verb|sbatch [submit]|: submits job to queue, where \verb|submit| is the SLURM file.
+
+    \item \verb|scancel [pid]|: kills job with id \verb|pid| instantly.
+  \end{itemize}
+
 
 \end{document}

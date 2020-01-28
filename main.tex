@@ -363,7 +363,18 @@
   \end{itemize}
   Then histogram. Can use these two methods as a check when in the Braginskii regime:
   $$
-    \mu_\text{Brag}\gg 1 \text{ and } \omega_A\ll \nu_c \implies p_0\gg 1 
+    \mu_\text{Brag}\gg 1 \text{ and } \omega_A\ll \nu_c \implies p_0\gg 1
   $$
+
+  Panicked when I saw that I was getting $\Delta p =0$ for all time in my simulations, then realised I wasn't actually in the Braginskii regime at all (was still in the MHD regime). Ran another simulation with properties that should be in the right regime.
+
+  Want to be able to output $\nu_c$ from Athena code just to make it easier to calculate stuff.
+
+  \newpage
+  \section*{Week 8: 27 Jan - 31 Jan}
+
+  Started off with running some Athena simulations on NeSI to get a hang of how long I should be expecting to wait. Need to write PDF and spectrum code.
+
+  Rewrote the PDF code, and ended up getting the Fourier transform method giving a closer result to the paper than straight calculating it from $\Delta p$. It does look a little too symmetrical however so will investigate and put screenshots up tomorrow.
 
 \end{document}
