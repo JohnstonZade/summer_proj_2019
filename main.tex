@@ -375,6 +375,59 @@
 
   Started off with running some Athena simulations on NeSI to get a hang of how long I should be expecting to wait. Need to write PDF and spectrum code.
 
-  Rewrote the PDF code, and ended up getting the Fourier transform method giving a closer result to the paper than straight calculating it from $\Delta p$. It does look a little too symmetrical however so will investigate and put screenshots up tomorrow.
+  Rewrote the PDF code, and ended up getting the Fourier transform method giving a closer result to the paper than straight calculating it from $\Delta p$. It does look a little too symmetrical however so will investigate and put screenshots up later.
+
+  Got the spectrum code mostly working, except for something to do with normalisation at small $k$.
+
+  \begin{figure}[!h]
+   \centering
+  \begin{subfigure}{.4\linewidth}
+    \centering
+  \includegraphics[width=0.9\linewidth]{Wk8/matlab_spectrum.png}
+  \caption{Spectrum calculated using MATLAB}
+  \label{fig:mat_spec}
+  \end{subfigure}
+  \
+  \begin{subfigure}{.4\linewidth}
+    \centering
+  \includegraphics[width=0.9\linewidth]{Wk8/python_spectrum.png}
+  \caption{Spectrum calculated using Python}
+  \label{fig:py_spec}
+  \end{subfigure}
+
+  \label{fig:spec_rewrite}
+  \end{figure}
+
+  Ran more simulations on NeSI, didn't know you could do more than one at once. Changed the following for the $2\times 1 \times 1$ box using 40 CPUs on one node:
+  \begin{itemize}
+    \item \textbf{Resolution:} $320\times 160\times 160$
+
+    \item \textbf{Meshblock:} $64\times 80 \times 40$
+
+    \item \textbf{Simulated Time:} 20 seconds down to 12 seconds. This is because we only need to run for 5-10 Alfven travel times $\tau$. In this case, $\tau = 2\pi/\omega_A = 2$ (as $\omega_A = 2$) so 12 simulated seconds is a good length.
+
+    \item $p_0 = 10$
+
+    \item $\nu_c$: using range of $1, 4, 10$.
+  \end{itemize}
+
+Was confused about which parameters to use; Jono simplified it down considerably. Want to only vary \textbf{dimensionless parameters} as this reduces the risk of running a simulation done before (e.g. halving a dimensional parameter could double another causing a null result).
+
+Will vary using the dimensionless parameter:
+$$
+\text{It}_\text{Brag} \sim \frac{\rho v_A l_\|}{\mu_\text{Brag}}\left(\frac{\delta B_\perp}{B_0}\right)^{-2}
+$$
+
+The term $\left(\frac{\delta B_\perp}{B_0}\right)^{-2}$ comes out to $4$ as the fraction is $1/2$; $\rho$ and $v_A$ are equal to 1 and $l_\|$ is equal to 2. Using $\mu_\text{Brag}=p_0/\nu_c$ we get:
+
+$$
+\text{It}_\text{Brag} \sim \frac{8\nu_c}{p_0}
+$$
+
+Will keep $p_0=10$ and vary $\nu_c$ as above.
+
+Talked with Jono about honours project, think I will keep going in this general direction of turbulence in plasmas but could change focus if needed further on. Let Jono know that I would like to do some more analytical stuff; he said he'll try make that a factor of whatever project I'll choose. Alo says it'd be good to write a report (why this physics is interesting, methods of running/calculating simulations, results etc) after I've had a play around with data from NeSI.
+
+Gotten spectrum code pretty much working except for a few little bugs. PDF requires a little more work. Will iron out these bugs and add a $\text{It}_\text{Brag}$ parameter/calculator in the code.
 
 \end{document}
